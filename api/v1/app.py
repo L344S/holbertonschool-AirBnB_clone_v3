@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Start of the API, first endpoint returns status of the API"""
 from flask import Flask
+from flask import jsonify
 from models import storage
 from api.v1.views import app_views
 from os import getenv
@@ -16,6 +17,12 @@ app.register_blueprint(app_views)
 def teardown(exception):
     """Method to close the session after each request"""
     storage.close()
+
+
+@app.errorhandler(404)
+def errorhandler(error):
+    """Method to handle 404 errors with JSON response"""
+    return jsonify({"error": "Not found"}), 404
 
 
 if __name__ == "__main__":
