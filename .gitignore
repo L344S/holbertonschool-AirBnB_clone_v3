@@ -1,1 +1,4 @@
 script.sh
+*.pyc
+# TEST FILES
+test_get_count.py
