@@ -114,7 +114,7 @@ class TestFileStorage(unittest.TestCase):
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(models.storage_t == 'db', "not testing db storage")
     def get_is_working(self):
         """
         Description:
@@ -129,7 +129,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(storage.get(State, st.id), st)
         storage.close()
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(models.storage_t == 'db', "not testing db storage")
     def count_is_working(self):
         """
         Description:
